@@ -73,24 +73,15 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "📁 Build output contents:"
-          ls -la dist/
-          echo ""
-          echo "📄 Checking index.html exists:"
-          if [ -f "dist/index.html" ]; then
-            echo "✅ dist/index.html exists"
+          echo "📁 Verifying build output..."
+          if [ -f "build/index.html" ]; then
+            echo "✅ build/index.html exists"
+            echo "📁 Build folder contents:"
+            ls -la build/
           else
-            echo "❌ dist/index.html not found!"
+            echo "❌ build/index.html not found!"
             exit 1
           fi
-
-      - name: Copy dist to build folder
-        run: |
-          echo "📁 Copying dist folder to build folder for Azure Static Web Apps"
-          cp -r dist build
-          echo "✅ Copied successfully"
-          echo "📁 Build folder contents:"
-          ls -la build/
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1

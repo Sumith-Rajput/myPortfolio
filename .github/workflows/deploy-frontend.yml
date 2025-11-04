@@ -71,12 +71,16 @@ jobs:
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
-      - name: Copy dist to build folder
+      - name: Verify build output
         run: |
-          echo "📁 Copying dist folder to build folder for Azure Static Web Apps"
-          cp -r dist build
-          echo "✅ Copied successfully"
-          ls -la build/
+          echo "📁 Verifying build output..."
+          if [ -f "build/index.html" ]; then
+            echo "✅ build/index.html exists"
+            ls -la build/
+          else
+            echo "❌ build/index.html not found!"
+            exit 1
+          fi
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1

@@ -9,5 +9,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    outDir: 'build', // Changed from 'dist' to 'build' for Azure Static Web Apps compatibility
+  },
 })
 
