@@ -185,6 +185,15 @@ jobs:
             exit 1
           fi
 
+      - name: Copy staticwebapp.config.json to build
+        run: |
+          if [ -f "staticwebapp.config.json" ]; then
+            cp staticwebapp.config.json build/staticwebapp.config.json
+            echo "✅ Copied staticwebapp.config.json to build directory"
+          else
+            echo "⚠️ staticwebapp.config.json not found in root"
+          fi
+
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
