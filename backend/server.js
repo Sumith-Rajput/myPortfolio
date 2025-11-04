@@ -160,6 +160,24 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Portfolio API is running' });
 });
 
+// API root endpoint - returns available endpoints
+app.get('/api', (req, res) => {
+  res.json({ 
+    message: 'Portfolio API', 
+    version: '1.0.0',
+    baseUrl: `${req.protocol}://${req.get('host')}/api`,
+    endpoints: {
+      health: '/api/health',
+      personal: '/api/personal',
+      professional: '/api/professional',
+      profile: '/api/profile',
+      skills: '/api/skills',
+      experience: '/api/experience',
+      projects: '/api/projects'
+    }
+  });
+});
+
 // Root route
 app.get('/', (req, res) => {
   res.json({ 
