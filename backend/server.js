@@ -24,6 +24,17 @@ app.use(express.json());
 // Data file path
 const DATA_FILE = join(__dirname, 'data.json');
 
+// Verify data.json exists on startup
+try {
+  const testData = readFileSync(DATA_FILE, 'utf8');
+  JSON.parse(testData);
+  console.log('✅ data.json file found and valid');
+} catch (error) {
+  console.error('❌ CRITICAL: data.json file missing or invalid:', error.message);
+  console.error('   File path:', DATA_FILE);
+  process.exit(1);
+}
+
 // Helper function to read data
 function readData() {
   try {
@@ -183,9 +194,32 @@ app.get('*', (req, res) => {
   });
 });
 
+// Process error handlers
+process.on('uncaughtException', (error) => {
+  console.error('❌ Uncaught Exception:', error);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1);
+});
+
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Backend server running on http://localhost:${PORT}`);
-  console.log(`📊 API endpoints available at http://localhost:${PORT}/api`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Backend server running on port ${PORT}`);
+  console.log(`📊 API endpoints available at /api`);
+  console.log(`🌐 Health check: http://0.0.0.0:${PORT}/api/health`);
+  console.log(`✅ Server ready to accept connections`);
+  console.log(`📁 Working directory: ${process.cwd()}`);
+  console.log(`📁 Data file: ${DATA_FILE}`);
+});
+
+server.on('error', (err) => {
+  console.error('❌ Server failed to start:', err);
+  if (err.code === 'EADDRINUSE') {
+    console.error(`   Port ${PORT} is already in use`);
+  }
+  process.exit(1);
 });
 
