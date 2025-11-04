@@ -2,6 +2,14 @@
 
 A modern portfolio website with a React frontend and Express backend API for managing personal and professional details.
 
+## 🚀 Deployment
+
+This application is deployed using **GitHub Actions** to Azure:
+- **Frontend**: Azure Static Web Apps
+- **Backend**: Azure App Service
+
+For deployment instructions, see [GITHUB_ACTIONS_DEPLOYMENT.md](./GITHUB_ACTIONS_DEPLOYMENT.md)
+
 ## Features
 
 - **Dynamic Content**: All personal and professional information is served from a backend API
