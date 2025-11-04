@@ -1,12 +1,6 @@
 {
   "routes": [
     {
-      "route": "/assets/*.js",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
       "route": "/*.js",
       "headers": {
         "Content-Type": "application/javascript"
@@ -50,6 +44,9 @@
     ".woff2": "font/woff2",
     ".ttf": "font/ttf",
     ".eot": "application/vnd.ms-fontobject"
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff"
   }
 }
 
