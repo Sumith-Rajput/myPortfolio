@@ -1,6 +1,10 @@
 {
   "routes": [
     {
+      "route": "/src/*",
+      "statusCode": 404
+    },
+    {
       "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
@@ -8,7 +12,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/api/*", "*.{css,scss,js,mjs,png,gif,ico,jpg,svg,woff,woff2,ttf,eot}", "/assets/*"]
+    "exclude": ["/api/*", "*.{css,scss,js,mjs,png,gif,ico,jpg,svg,woff,woff2,ttf,eot}", "/assets/*", "/src/*"]
   },
   "responseOverrides": {
     "404": {
