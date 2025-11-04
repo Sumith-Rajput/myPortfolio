@@ -1,11 +1,6 @@
 {
   "routes": [
     {
-      "route": "/*",
-      "serve": "/index.html",
-      "statusCode": 200
-    },
-    {
       "route": "/assets/*.js",
       "headers": {
         "Content-Type": "application/javascript"
@@ -22,6 +17,11 @@
       "headers": {
         "Content-Type": "application/javascript"
       }
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ],
   "navigationFallback": {
