@@ -149,6 +149,40 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Portfolio API is running' });
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Portfolio API Server', 
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      personal: '/api/personal',
+      professional: '/api/professional',
+      profile: '/api/profile',
+      skills: '/api/skills',
+      experience: '/api/experience',
+      projects: '/api/projects'
+    }
+  });
+});
+
+// Catch-all for undefined routes
+app.get('*', (req, res) => {
+  res.status(404).json({ 
+    error: 'Route not found',
+    path: req.path,
+    availableRoutes: [
+      '/api/health',
+      '/api/personal',
+      '/api/professional',
+      '/api/profile',
+      '/api/skills',
+      '/api/experience',
+      '/api/projects'
+    ]
+  });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Backend server running on http://localhost:${PORT}`);
