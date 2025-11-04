@@ -161,11 +161,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          name: frontend-dist
-          path: dist
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+
+      - name: Copy dist to build folder
+        run: |
+          echo "📁 Copying dist folder to build folder for Azure Static Web Apps"
+          cp -r dist build
+          echo "✅ Copied successfully"
+          ls -la build/
 
       - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
@@ -174,5 +189,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "/"
-          output_location: "dist"
+          output_location: "build"
+          skip_app_build: true
 
