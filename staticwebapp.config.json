@@ -1,18 +1,6 @@
 {
   "routes": [
     {
-      "route": "/*.js",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
-      "route": "/*.mjs",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
       "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
