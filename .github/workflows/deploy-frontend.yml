@@ -76,7 +76,29 @@ jobs:
           echo "📁 Verifying build output..."
           if [ -f "build/index.html" ]; then
             echo "✅ build/index.html exists"
+            echo "📁 Build folder contents:"
             ls -la build/
+            if [ -d "build/assets" ]; then
+              echo "✅ build/assets folder exists"
+              echo "📁 Assets folder contents:"
+              ls -la build/assets/
+              # Verify critical files exist
+              if ls build/assets/*.js 1> /dev/null 2>&1; then
+                echo "✅ JavaScript files found in assets"
+              else
+                echo "❌ No JavaScript files found in assets!"
+                exit 1
+              fi
+              if ls build/assets/*.css 1> /dev/null 2>&1; then
+                echo "✅ CSS files found in assets"
+              else
+                echo "❌ No CSS files found in assets!"
+                exit 1
+              fi
+            else
+              echo "❌ build/assets folder not found!"
+              exit 1
+            fi
           else
             echo "❌ build/index.html not found!"
             exit 1
