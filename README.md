@@ -1,4 +1,4 @@
-# Portfolio App
+# myPortfolio
 
 A modern portfolio website with a React frontend and Express backend API for managing personal and professional details.
 
@@ -126,4 +126,3 @@ pm2 start backend/server.js
 ## License
 
 MIT
-
