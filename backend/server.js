@@ -177,8 +177,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// Catch-all for undefined routes
-app.get('*', (req, res) => {
+// Catch-all for undefined routes (must be last)
+app.use((req, res) => {
   res.status(404).json({ 
     error: 'Route not found',
     path: req.path,
