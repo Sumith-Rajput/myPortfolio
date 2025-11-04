@@ -1,0 +1,120 @@
+# Azure DevOps Pipeline for Portfolio App
+# This pipeline builds and deploys both frontend and backend
+
+trigger:
+  branches:
+    include:
+      - main
+      - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  nodeVersion: '18.x'
+  frontendBuildPath: '$(System.DefaultWorkingDirectory)/dist'
+  backendPath: '$(System.DefaultWorkingDirectory)/backend'
+
+stages:
+  # Stage 1: Build Frontend
+  - stage: BuildFrontend
+    displayName: 'Build Frontend'
+    jobs:
+      - job: Build
+        displayName: 'Build React Application'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '$(nodeVersion)'
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm ci
+            displayName: 'Install Dependencies'
+
+          - script: |
+              npm run build
+            displayName: 'Build Frontend'
+            env:
+              VITE_API_URL: $(VITE_API_URL)
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: '$(Pipeline.Workspace)/dist'
+              artifactName: 'frontend-dist'
+            displayName: 'Publish Frontend Artifacts'
+            condition: succeeded()
+
+  # Stage 2: Build Backend
+  - stage: BuildBackend
+    displayName: 'Build Backend'
+    jobs:
+      - job: Build
+        displayName: 'Prepare Backend'
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '$(nodeVersion)'
+            displayName: 'Install Node.js'
+
+          - script: |
+              cd backend
+              npm ci --production=false
+            displayName: 'Install Backend Dependencies'
+
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/backend'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/backend.zip'
+              replaceExistingArchive: true
+            displayName: 'Archive Backend'
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              pathToPublish: '$(Build.ArtifactStagingDirectory)/backend.zip'
+              artifactName: 'backend-package'
+            displayName: 'Publish Backend Artifacts'
+
+  # Stage 3: Deploy Backend to Azure App Service
+  - stage: DeployBackend
+    displayName: 'Deploy Backend to Azure'
+    dependsOn: BuildBackend
+    condition: succeeded()
+    jobs:
+      - deployment: DeployBackend
+        displayName: 'Deploy to Azure App Service'
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureWebApp@1
+                  inputs:
+                    azureSubscription: '$(azureSubscription)'
+                    appName: '$(azureAppServiceName)'
+                    package: '$(Pipeline.Workspace)/backend-package/backend.zip'
+                    startUpCommand: 'node server.js'
+                  displayName: 'Deploy Backend to Azure App Service'
+
+  # Stage 4: Deploy Frontend to Azure Static Web Apps
+  - stage: DeployFrontend
+    displayName: 'Deploy Frontend to Azure'
+    dependsOn: BuildFrontend
+    condition: succeeded()
+    jobs:
+      - deployment: DeployFrontend
+        displayName: 'Deploy to Azure Static Web Apps'
+        environment: 'production'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureStaticWebApp@0
+                  inputs:
+                    appLocation: '/'
+                    outputLocation: 'dist'
+                    azureStaticWebAppSecret: '$(azureStaticWebAppSecret)'
+                  displayName: 'Deploy Frontend to Azure Static Web Apps'
+
