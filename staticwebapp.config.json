@@ -4,11 +4,29 @@
       "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
+    },
+    {
+      "route": "/assets/*.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "route": "/*.js",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "route": "/*.mjs",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
     }
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/api/*", "*.{css,scss,js,png,gif,ico,jpg,svg,woff,woff2,ttf,eot}"]
+    "exclude": ["/api/*", "*.{css,scss,js,mjs,png,gif,ico,jpg,svg,woff,woff2,ttf,eot}"]
   },
   "responseOverrides": {
     "404": {
