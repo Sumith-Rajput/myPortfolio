@@ -16,7 +16,40 @@ env:
   NODE_VERSION: '18.x'
 
 jobs:
+  validate-secrets:
+    name: Validate Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Required Secrets
+        run: |
+          echo "🔍 Validating required secrets for frontend deployment..."
+          missing_secrets=()
+          
+          if [ -z "${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}" ]; then
+            echo "❌ AZURE_STATIC_WEB_APPS_API_TOKEN is missing"
+            missing_secrets+=("AZURE_STATIC_WEB_APPS_API_TOKEN")
+          else
+            echo "✅ AZURE_STATIC_WEB_APPS_API_TOKEN is set"
+          fi
+          
+          if [ -z "${{ secrets.VITE_API_URL }}" ]; then
+            echo "⚠️  VITE_API_URL is not set (using default)"
+          else
+            echo "✅ VITE_API_URL is set: ${{ secrets.VITE_API_URL }}"
+          fi
+          
+          if [ ${#missing_secrets[@]} -gt 0 ]; then
+            echo ""
+            echo "⚠️  Missing secrets: ${missing_secrets[*]}"
+            echo "📝 Please add these secrets in: Settings → Secrets and variables → Actions"
+            exit 1
+          else
+            echo ""
+            echo "✅ All required frontend secrets are configured!"
+          fi
+
   build-and-deploy:
+    needs: validate-secrets
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
