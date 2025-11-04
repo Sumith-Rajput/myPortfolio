@@ -133,6 +133,24 @@ jobs:
           name: backend-package
           path: backend
 
+      - name: Verify backend files
+        run: |
+          echo "📁 Verifying backend files..."
+          ls -la backend/
+          if [ -f "backend/server.js" ]; then
+            echo "✅ server.js exists"
+          else
+            echo "❌ server.js not found!"
+            exit 1
+          fi
+
+      - name: Create deployment package
+        run: |
+          cd backend
+          zip -r ../backend-deploy.zip . -x "*.git*" -x "*node_modules/.cache*"
+          echo "✅ Created backend-deploy.zip"
+          ls -lh ../backend-deploy.zip
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -143,7 +161,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ./backend
+          package: ./backend-deploy.zip
           startup-command: 'node server.js'
 
       - name: Restart Azure Web App

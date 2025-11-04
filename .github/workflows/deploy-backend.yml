@@ -71,11 +71,35 @@ jobs:
         working-directory: ./backend
         run: npm install --production
 
-      - name: Build (if needed)
-        working-directory: ./backend
+      - name: Verify backend files
         run: |
-          echo "Backend is ready for deployment"
-        continue-on-error: true
+          echo "📁 Verifying backend files..."
+          ls -la backend/
+          if [ -f "backend/server.js" ]; then
+            echo "✅ server.js exists"
+          else
+            echo "❌ server.js not found!"
+            exit 1
+          fi
+          if [ -f "backend/package.json" ]; then
+            echo "✅ package.json exists"
+          else
+            echo "❌ package.json not found!"
+            exit 1
+          fi
+          if [ -f "backend/data.json" ]; then
+            echo "✅ data.json exists"
+          else
+            echo "❌ data.json not found!"
+            exit 1
+          fi
+
+      - name: Create deployment package
+        run: |
+          cd backend
+          zip -r ../backend-deploy.zip . -x "*.git*" -x "*node_modules/.cache*"
+          echo "✅ Created backend-deploy.zip"
+          ls -lh ../backend-deploy.zip
 
       - name: Azure Login
         uses: azure/login@v1
@@ -87,7 +111,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ./backend
+          package: ./backend-deploy.zip
           startup-command: 'node server.js'
 
       - name: Restart Azure Web App
