@@ -1,0 +1,167 @@
+{
+  "personal": {
+    "name": "Sumith Rajput",
+    "title": "Integration Engineer",
+    "bio": "Specialized in MuleSoft, AWS, Azure Integration Services & Modern API Design",
+    "photo": "/profile-photo.jpg",
+    "location": "Your Location",
+    "email": "your.email@example.com",
+    "phone": "+1 (555) 000-0000",
+    "socialLinks": [
+      {
+        "name": "LinkedIn",
+        "url": "https://linkedin.com/in/yourprofile",
+        "icon": "💼"
+      },
+      {
+        "name": "GitHub",
+        "url": "https://github.com/yourusername",
+        "icon": "💻"
+      },
+      {
+        "name": "Email",
+        "url": "mailto:sumith.singh0325@gmail.com",
+        "icon": "✉️"
+      },
+      {
+        "name": "Twitter",
+        "url": "https://twitter.com/yourusername",
+        "icon": "🐦"
+      }
+    ],
+    "availability": {
+      "status": "available",
+      "message": "Currently available for new projects",
+      "responseTime": "Usually within 24 hours"
+    }
+  },
+  "professional": {
+    "skills": [
+      "AWS",
+      "MuleSoft",
+      "OpenAI",
+      "React",
+      "Node.js",
+      "API Design",
+      "Cloud Architecture"
+    ],
+    "expertise": [
+      {
+        "category": "Integration",
+        "items": [
+          "MuleSoft",
+          "AWS API Gateway",
+          "REST/SOAP APIs",
+          "Event-Driven Architecture"
+        ]
+      },
+      {
+        "category": "Cloud",
+        "items": [
+          "AWS Lambda",
+          "S3",
+          "DynamoDB",
+          "CloudFormation",
+          "ECS"
+        ]
+      },
+      {
+        "category": "Development",
+        "items": [
+          "React",
+          "Node.js",
+          "Python",
+          "Java",
+          "TypeScript"
+        ]
+      },
+      {
+        "category": "AI/ML",
+        "items": [
+          "OpenAI API",
+          "LangChain",
+          "Vector Databases",
+          "Prompt Engineering"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "role": "Senior Associate Technology",
+        "company": "Publicis Sapient",
+        "period": "2024 - Present",
+        "description": "Leading cloud-native integration projects and API design initiatives.",
+        "achievements": [
+          "Led multiple integration projects",
+          "Designed scalable API architectures"
+        ]
+      },
+      {
+        "role": "Solutions Architect",
+        "company": "Previous Company",
+        "period": "2018 - 2020",
+        "description": "Designed and implemented enterprise integration solutions.",
+        "achievements": [
+          "Implemented enterprise solutions",
+          "Worked with cross-functional teams"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "title": "Salon Web App",
+        "description": "Full-stack salon management app with admin and customer portals. Features real-time booking, payment processing, and analytics dashboard.",
+        "tech": [
+          "React",
+          "Node.js",
+          "AWS Lambda",
+          "Cognito",
+          "DynamoDB"
+        ],
+        "link": "#",
+        "github": "#"
+      },
+      {
+        "title": "Integration Platform",
+        "description": "MuleSoft + AWS hybrid integration for retail systems. Connects SAP, Salesforce, and custom APIs with event-driven architecture.",
+        "tech": [
+          "MuleSoft",
+          "AWS API Gateway",
+          "SAP",
+          "Salesforce",
+          "EventBridge"
+        ],
+        "link": "#",
+        "github": "#"
+      },
+      {
+        "title": "AI Resume Optimizer",
+        "description": "Resume analyzer powered by OpenAI APIs. Provides ATS optimization suggestions and keyword matching.",
+        "tech": [
+          "React",
+          "OpenAI API",
+          "Vercel",
+          "TypeScript"
+        ],
+        "link": "#",
+        "github": "#"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor's Degree",
+        "institution": "University Name",
+        "period": "2014 - 2018",
+        "field": "Computer Science or Related Field"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Solutions Architect",
+        "issuer": "Amazon Web Services",
+        "year": "2020"
+      }
+    ]
+  }
+}
+
