@@ -170,8 +170,11 @@ jobs:
           inlineScript: |
             az webapp restart --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }}
 
+  # DISABLED: Frontend deployment handled by auto-generated workflow
+  # Keeping backend deployment active
   deploy-frontend:
     name: Deploy Frontend to Azure
+    if: false  # Disabled to prevent conflicts with auto-generated workflow
     needs: build-frontend
     runs-on: ubuntu-latest
     steps:

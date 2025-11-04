@@ -1,16 +1,10 @@
 name: Deploy Frontend to Azure
 
+# DISABLED: Auto-generated workflow handles frontend deployments
+# This workflow is kept for reference but will not trigger automatically
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
-      - 'public/**'
-      - 'package.json'
-      - 'vite.config.js'
-      - '.github/workflows/deploy-frontend.yml'
-  workflow_dispatch:
+  # Disabled to prevent conflicts with auto-generated workflow
+  # workflow_dispatch:  # Uncomment to allow manual runs only
 
 env:
   NODE_VERSION: '18.x'
