@@ -68,13 +68,8 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          cd backend
-          # Create package.json if it doesn't exist
-          if [ ! -f "package.json" ]; then
-            echo '{"name":"portfolio-backend","version":"1.0.0","type":"module","main":"server.js","dependencies":{"express":"^5.1.0","cors":"^2.8.5"}}' > package.json
-          fi
-          npm ci
+        working-directory: ./backend
+        run: npm install --production
 
       - name: Build (if needed)
         working-directory: ./backend
