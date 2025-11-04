@@ -11,6 +11,7 @@ export default defineConfig({
   },
   build: {
     outDir: 'build', // Changed from 'dist' to 'build' for Azure Static Web Apps compatibility
+    sourcemap: false, // Disable source maps in production to prevent 404 errors for source files
   },
 })
 
