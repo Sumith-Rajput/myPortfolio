@@ -2,9 +2,10 @@ name: Deploy Frontend to Azure
 
 # DISABLED: Auto-generated workflow handles frontend deployments
 # This workflow is kept for reference but will not trigger automatically
+# To enable this workflow, uncomment the push triggers below
 on:
-  # Disabled to prevent conflicts with auto-generated workflow
-  # workflow_dispatch:  # Uncomment to allow manual runs only
+  # Manual trigger only - will not auto-run on push
+  workflow_dispatch:
 
 env:
   NODE_VERSION: '18.x'
