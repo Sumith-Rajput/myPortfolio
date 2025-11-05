@@ -32,7 +32,7 @@ jobs:
           npm run build || exit 1
           echo "✅ Build completed successfully"
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:3001/api' }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
       - name: Verify build output
         run: |
           echo "📁 Verifying build output..."
