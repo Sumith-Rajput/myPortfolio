@@ -27,41 +27,63 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
-        run: npm run build
+        run: |
+          echo "🔨 Building application..."
+          npm run build || exit 1
+          echo "✅ Build completed successfully"
         env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:3001/api' }}
       - name: Verify build output
         run: |
           echo "📁 Verifying build output..."
-          if [ -f "build/index.html" ]; then
-            echo "✅ build/index.html exists"
-            echo "📁 Build folder contents:"
-            ls -la build/
-            if [ -d "build/assets" ]; then
-              echo "✅ build/assets folder exists"
-              echo "📁 Assets folder contents:"
-              ls -la build/assets/
-              # Verify critical files exist
-              if ls build/assets/*.js 1> /dev/null 2>&1; then
-                echo "✅ JavaScript files found in assets"
-              else
-                echo "❌ No JavaScript files found in assets!"
-                exit 1
-              fi
-              if ls build/assets/*.css 1> /dev/null 2>&1; then
-                echo "✅ CSS files found in assets"
-              else
-                echo "❌ No CSS files found in assets!"
-                exit 1
-              fi
-            else
-              echo "❌ build/assets folder not found!"
-              exit 1
-            fi
-          else
-            echo "❌ build/index.html not found!"
+          
+          # Check if build directory exists
+          if [ ! -d "build" ]; then
+            echo "❌ ERROR: build directory does not exist!"
+            echo "📁 Current directory contents:"
+            ls -la
             exit 1
           fi
+          
+          # Check index.html
+          if [ ! -f "build/index.html" ]; then
+            echo "❌ ERROR: build/index.html not found!"
+            echo "📁 Build directory contents:"
+            ls -la build/
+            exit 1
+          fi
+          echo "✅ build/index.html exists"
+          
+          # Check assets directory
+          if [ ! -d "build/assets" ]; then
+            echo "❌ ERROR: build/assets folder not found!"
+            echo "📁 Build directory contents:"
+            ls -la build/
+            exit 1
+          fi
+          echo "✅ build/assets folder exists"
+          
+          # List assets
+          echo "📁 Assets folder contents:"
+          ls -la build/assets/
+          
+          # Verify JavaScript files
+          JS_COUNT=$(find build/assets -name "*.js" | wc -l)
+          if [ "$JS_COUNT" -eq 0 ]; then
+            echo "❌ ERROR: No JavaScript files found in assets!"
+            exit 1
+          fi
+          echo "✅ JavaScript files found: $JS_COUNT"
+          
+          # Verify CSS files
+          CSS_COUNT=$(find build/assets -name "*.css" | wc -l)
+          if [ "$CSS_COUNT" -eq 0 ]; then
+            echo "❌ ERROR: No CSS files found in assets!"
+            exit 1
+          fi
+          echo "✅ CSS files found: $CSS_COUNT"
+          
+          echo "✅ All required files verified successfully!"
       - name: Copy staticwebapp.config.json to build
         run: |
           if [ -f "staticwebapp.config.json" ]; then
