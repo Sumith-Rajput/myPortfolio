@@ -11,7 +11,9 @@ on:
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    # DISABLED: This workflow is for a Static Web App that doesn't exist or isn't configured
+    # The working Static Web App is "ambitious-mud-099772e10" (see azure-static-web-apps-ambitious-mud-099772e10.yml)
+    if: false
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
