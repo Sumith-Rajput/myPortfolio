@@ -1,0 +1,90 @@
+name: Deploy Backend to Azure
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '18.x'
+
+jobs:
+  validate-secrets:
+    name: Validate Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Required Secrets
+        run: |
+          echo "Validating required secrets..."
+
+          missing_secrets=()
+
+          [ -z "${{ secrets.AZURE_WEBAPP_NAME }}" ] && missing_secrets+=("AZURE_WEBAPP_NAME")
+          [ -z "${{ secrets.AZURE_RESOURCE_GROUP }}" ] && missing_secrets+=("AZURE_RESOURCE_GROUP")
+          [ -z "${{ secrets.AZURE_CREDENTIALS }}" ] && missing_secrets+=("AZURE_CREDENTIALS")
+
+          if [ ${#missing_secrets[@]} -gt 0 ]; then
+            echo "Missing secrets: ${missing_secrets[*]}"
+            exit 1
+          fi
+
+          echo "All required secrets are present."
+
+  build-and-deploy:
+    needs: validate-secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm install --production
+
+      - name: Validate Backend Files
+        run: |
+          echo "Checking backend folder structure..."
+          ls -la backend/
+
+          [ ! -f "backend/server.js" ] && echo "server.js missing!" && exit 1
+          [ ! -f "backend/package.json" ] && echo "package.json missing!" && exit 1
+
+          echo "Backend structure OK."
+
+      - name: Create Deployment ZIP
+        run: |
+          cd backend
+          zip -r ../backend.zip . -x "*.git*" -x "*node_modules/.cache*"
+          echo "Created backend.zip:"
+          ls -lh ../backend.zip
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          package: ./backend.zip
+          startup-command: 'node server.js'
+
+      - name: Restart Azure App Service
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az webapp restart \
+              --name ${{ secrets.AZURE_WEBAPP_NAME }} \
+              --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }}
