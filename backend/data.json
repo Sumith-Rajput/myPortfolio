@@ -1,167 +1,227 @@
 {
-  "personal": {
-    "name": "Sumith Rajput",
-    "title": "Integration Engineer",
-    "bio": "Specialized in MuleSoft, AWS, Azure Integration Services & Modern API Design",
-    "photo": "/profile-photo.jpg",
-    "location": "Your Location",
-    "email": "your.email@example.com",
-    "phone": "+1 (555) 000-0000",
-    "socialLinks": [
-      {
-        "name": "LinkedIn",
-        "url": "https://linkedin.com/in/yourprofile",
-        "icon": "💼"
-      },
-      {
-        "name": "GitHub",
-        "url": "https://github.com/yourusername",
-        "icon": "💻"
-      },
-      {
-        "name": "Email",
-        "url": "mailto:sumith.singh0325@gmail.com",
-        "icon": "✉️"
-      },
-      {
-        "name": "Twitter",
-        "url": "https://twitter.com/yourusername",
-        "icon": "🐦"
+    "personal": {
+      "name": "Sumith Rajput",
+      "title": "Integration Engineer",
+      "bio": "Specialized in MuleSoft, AWS, Azure Integration Services & Modern API Design",
+      "photo": "/profile-photo.jpg",
+      "location": "Bangalore",
+      "email": "sumith.singh0325@gmail.com",
+      "phone": "+91 9686793100",
+      "socialLinks": [
+        {
+          "name": "LinkedIn",
+          "url": "https://www.linkedin.com/in/sumith-rajpoot-04b36b151?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "icon": "💼"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/Sumith-Rajput",
+          "icon": "💻"
+        },
+        {
+          "name": "Email",
+          "url": "mailto:sumith.singh0325@gmail.com",
+          "icon": "✉️"
+        },
+        {
+          "name": "Instagram",
+          "url": "https://www.instagram.com/sumithrajput25?igsh=OGswNTdjZ28zdTg=",
+          "icon": "🐦"
+        }
+      ],
+      "availability": {
+        "status": "available",
+        "message": "Currently available for new projects",
+        "responseTime": "Usually within 24 hours"
       }
-    ],
-    "availability": {
-      "status": "available",
-      "message": "Currently available for new projects",
-      "responseTime": "Usually within 24 hours"
+    },
+    "professional": {
+      "skills": [
+        "AWS",
+        "MuleSoft",
+        "OpenAI",
+        "API Design",
+        "Integration and Cloud Architecture",
+        "Microsoft Azure Integration Services",
+        "CI/CD Pipelines"
+      ],
+      "expertise": [
+        {
+          "category": "Integration",
+          "items": [
+            "MuleSoft",
+            "Azure Integration Services"
+          ]
+        },
+        {
+          "category": "Cloud",
+          "items": [
+            "Amazon Web Services",
+            "Microsoft Azure"
+          ]
+        },
+        {
+          "category": "Development",
+          "items": [
+            "React",
+            "Node.js",
+            "Python",
+            "TypeScript"
+          ]
+        },
+        {
+          "category": "AI/ML",
+          "items": [
+            "OpenAI API",
+            "LangChain",
+            "Vector Databases",
+            "Prompt Engineering",
+            "MCP Servers",
+            "Agent 2 Agent Models"
+          ]
+        },
+        {
+          "category": "DevOps",
+          "items": [
+            "Jenkins",
+            "Docker",
+            "Azure DevOps",
+            "GitLab"
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "role": "Senior Associate Technology",
+          "company": "Publicis Sapient",
+          "period": "2024 - Present",
+          "description": "Leading cloud-native integration programs and enterprise API design.",
+          "achievements": [
+            "Led multiple large-scale integration programs.",
+            "Designed scalable, cloud-ready API architectures.",
+            "Defined C4E development best practices.",
+            "Architected and developed MuleSoft integrations using API-LED principles.",
+            "Implemented a robust alerting framework integrating Splunk and ServiceNow."
+          ]
+        },
+        {
+          "role": "Associate - Projects",
+          "company": "Cognizant Technology solutions",
+          "period": "2022 - 2024",
+          "description": "Designed and developed MuleSoft integrations for large insurance platforms.",
+          "achievements": [
+            "Designed end-to-end underwriting system integrations across legacy and CRM platforms.",
+            "Developed MuleSoft APIs following the API-LED architecture",
+            "Planned and executed end-to-end delivery for integration projects",
+            "Performed SIT/UAT testing and provided hypercare support",
+            "Delivered hotfixes and resolved critical defects."
+          ]
+        },
+        {
+          "role": "Application Development Analyst",
+          "company": "Accenture Technology",
+          "period": "2021 - 2022",
+          "description": "Developed MuleSoft integrations for travel and booking systems.",
+          "achievements": [
+            "Developed MuleSoft APIs using the API-LED approach.",
+            "Managed end-to-end delivery planning for integration components.",
+            "Supported testing cycles and hypercare activities.",
+            "Delivered hotfixes and resolved production issues."
+          ]
+        },
+        {
+          "role": "Consultant",
+          "company": "Quinnox Consultancy Services",
+          "period": "2019 - 2021",
+          "description": "Provided integration development and support for retail enterprise platforms.",
+          "achievements": [
+            "Developed MuleSoft integrations using the API-LED methodology.",
+            "Supported integration testing and hypercare operations.",
+            "Delivered hotfixes and defect fixes across environments.",
+            "Provided support for Software AG webMethods integrations."
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "title": "ABC Supply",
+          "description": "ABC Supply is one of the largest wholesale distributer of roofing supplies, siding, windows and other exterior/interior building products, tools and related supplies.",
+          "tech": [
+            "MuleSoft",
+            "Azure Integration Services",
+            "Azure DevOps",
+            "Splunk",
+            "ServiceNow"
+          ],
+          "link": "#",
+          "github": "#"
+        },
+        {
+          "title": "Booking Holdings",
+          "description": "Booking Holdings Inc. is a global leader in online travel and related services. The company operates a portfolio of well-known travel brands that serve customers in more than 220 countries and territories.",
+          "tech": [
+            "MuleSoft",
+            "AWS API Gateway",
+            "SAP",
+            "Salesforce",
+            "Kibana",
+            "Jenkins"
+          ],
+          "link": "#",
+          "github": "#"
+        },
+        {
+          "title": "New York Life Insurance Company",
+          "description": "New York Life Insurance Company is one of the largest and oldest life insurance organizations in the United States.",
+          "tech": [
+            "Mulesoft",
+            "AWS",
+            "Lambda",
+            "Dataweave",
+            "Stonebranch",
+            "New Relic",
+            "UDeploy",
+            "Jenkins"
+          ],
+          "link": "#",
+          "github": "#"
+        },
+        {
+          "title": "Coco Cola European Parteners",
+          "description": "Coca-Cola European Partners (now Coca-Cola Europacific Partners, CCEP) is one of the world’s largest bottlers and distributors of Coca-Cola products.",
+          "tech": [
+            "Mulesoft",
+            "SoftwareAG WebMethods",
+            "Salesforce"
+          ],
+          "link": "#",
+          "github": "#"
+        }
+      ],
+      "education": [
+        {
+          "degree": "BE/B.Tech",
+          "institution": "VTU, Belgaum-Karnataka",
+          "period": "2015 - 2019",
+          "field": "Computer Science and Engineering"
+        }
+      ],
+      "certifications": [
+        {
+          "name": "AWS Certified Cloud Practitioner",
+          "issuer": "Amazon Web Services",
+          "year": "2020"
+        },
+        {
+          "name": "MuleSoft Certified Developer L1",
+          "issuer": "Salesforce",
+          "year": "2021"
+        },
+        {
+          "name": "MuleSoft Certified Developer L2",
+          "issuer": "Salesforce",
+          "year": "2022"
+        }
+      ]
     }
-  },
-  "professional": {
-    "skills": [
-      "AWS",
-      "MuleSoft",
-      "OpenAI",
-      "React",
-      "Node.js",
-      "API Design",
-      "Cloud Architecture"
-    ],
-    "expertise": [
-      {
-        "category": "Integration",
-        "items": [
-          "MuleSoft",
-          "AWS API Gateway",
-          "REST/SOAP APIs",
-          "Event-Driven Architecture"
-        ]
-      },
-      {
-        "category": "Cloud",
-        "items": [
-          "AWS Lambda",
-          "S3",
-          "DynamoDB",
-          "CloudFormation",
-          "ECS"
-        ]
-      },
-      {
-        "category": "Development",
-        "items": [
-          "React",
-          "Node.js",
-          "Python",
-          "Java",
-          "TypeScript"
-        ]
-      },
-      {
-        "category": "AI/ML",
-        "items": [
-          "OpenAI API",
-          "LangChain",
-          "Vector Databases",
-          "Prompt Engineering"
-        ]
-      }
-    ],
-    "experience": [
-      {
-        "role": "Senior Associate Technology",
-        "company": "Publicis Sapient",
-        "period": "2024 - Present",
-        "description": "Leading cloud-native integration projects and API design initiatives.",
-        "achievements": [
-          "Led multiple integration projects",
-          "Designed scalable API architectures"
-        ]
-      },
-      {
-        "role": "Solutions Architect",
-        "company": "Previous Company",
-        "period": "2018 - 2020",
-        "description": "Designed and implemented enterprise integration solutions.",
-        "achievements": [
-          "Implemented enterprise solutions",
-          "Worked with cross-functional teams"
-        ]
-      }
-    ],
-    "projects": [
-      {
-        "title": "Salon Web App",
-        "description": "Full-stack salon management app with admin and customer portals. Features real-time booking, payment processing, and analytics dashboard.",
-        "tech": [
-          "React",
-          "Node.js",
-          "AWS Lambda",
-          "Cognito",
-          "DynamoDB"
-        ],
-        "link": "#",
-        "github": "#"
-      },
-      {
-        "title": "Integration Platform",
-        "description": "MuleSoft + AWS hybrid integration for retail systems. Connects SAP, Salesforce, and custom APIs with event-driven architecture.",
-        "tech": [
-          "MuleSoft",
-          "AWS API Gateway",
-          "SAP",
-          "Salesforce",
-          "EventBridge"
-        ],
-        "link": "#",
-        "github": "#"
-      },
-      {
-        "title": "AI Resume Optimizer",
-        "description": "Resume analyzer powered by OpenAI APIs. Provides ATS optimization suggestions and keyword matching.",
-        "tech": [
-          "React",
-          "OpenAI API",
-          "Vercel",
-          "TypeScript"
-        ],
-        "link": "#",
-        "github": "#"
-      }
-    ],
-    "education": [
-      {
-        "degree": "Bachelor's Degree",
-        "institution": "University Name",
-        "period": "2014 - 2018",
-        "field": "Computer Science or Related Field"
-      }
-    ],
-    "certifications": [
-      {
-        "name": "AWS Certified Solutions Architect",
-        "issuer": "Amazon Web Services",
-        "year": "2020"
-      }
-    ]
-  }
-}
-
+  }  
