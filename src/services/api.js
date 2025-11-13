@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = 'https://sumith-portfolio-api-g3dra2a9g6haaxev.centralus-01.azurewebsites.net/api' /* import.meta.env.VITE_API_URL || 'http://localhost:3001/api'; */
 
 /**
  * Fetch personal information
